@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Tale of Two Cities</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background: #2f241b;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #2d1d14;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            width: 100%;
+
+            padding: 22px 50px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 40px;
+
+            background: rgba(15, 10, 8, 0.88);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+
+            color: #f5e6cc;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+
+            width: 75%;
+
+            margin: auto;
+
+            padding-top: 130px;
+
+            padding-bottom: 80px;
+        }
+
+        /* BUTTONS */
+
+        .top-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+
+            text-decoration: none;
+
+            background: #20150f;
+
+            color: #f5e6cc;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+
+            background: #d4af37;
+
+            color: black;
+        }
+
+        /* PAPER PAGE */
+
+        .book-page {
+
+            background: #f3e1c7;
+
+            padding: 85px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.3;
+        }
+
+        /* TITLE */
+
+        .book-title {
+
+            text-align: center;
+
+            font-size: 78px;
+
+            margin-bottom: 15px;
+
+            font-weight: 700;
+        }
+
+        .author {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+
+            font-style: italic;
+        }
+
+        /* CHAPTER */
+
+        .chapter {
+
+            text-align: center;
+
+            font-size: 44px;
+
+            margin-bottom: 45px;
+        }
+
+        /* PARAGRAPHS */
+
+        .book-page p {
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            text-align: justify;
+        }
+
+        /* DROP LETTER */
+
+        .book-page p:first-letter {
+
+            font-size: 62px;
+
+            font-weight: bold;
+
+            float: left;
+
+            line-height: 1;
+
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- BOOK -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/tale.pdf') }}" download>
+
+                Download PDF
+
+            </a>
+
+            <a href="/fiction">
+
+                Back to Fiction
+
+            </a>
+
+        </div>
+
+        <!-- PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                A Tale of Two Cities
+            </h1>
+
+            <div class="author">
+                by Charles Dickens
+            </div>
+
+            <h2 class="chapter">
+                Book the First — Recalled to Life
+            </h2>
+
+            <p>
+                It was the best of times, it was the worst of times,
+                it was the age of wisdom, it was the age of foolishness,
+                it was the epoch of belief, it was the epoch of incredulity,
+                it was the season of Light, it was the season of Darkness,
+                it was the spring of hope, it was the winter of despair.
+            </p>
+
+            <p>
+                We had everything before us, we had nothing before us,
+                we were all going direct to Heaven, we were all going direct the other way—
+                in short, the period was so far like the present period,
+                that some of its noisiest authorities insisted on its being received,
+                for good or for evil, in the superlative degree of comparison only.
+            </p>
+
+            <p>
+                There were a king with a large jaw and a queen with a plain face,
+                on the throne of England; there were a king with a large jaw
+                and a queen with a fair face, on the throne of France.
+            </p>
+
+            <p>
+                In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes,
+                that things in general were settled forever.
+            </p>
+
+            <p>
+                It was the year of Our Lord one thousand seven hundred and seventy-five.
+                Spiritual revelations were conceded to England at that favoured period,
+                as at this.
+            </p>
+
+            <p>
+                Mrs. Southcott had recently attained her five-and-twentieth blessed birthday,
+                of whom a prophetic private in the Life Guards had heralded
+                the sublime appearance by announcing that arrangements were made
+                for the swallowing up of London and Westminster.
+            </p>
+
+            <p>
+                Even the Cock-lane ghost had been laid only a round dozen of years,
+                after rapping out its messages, as the spirits of this very year last past
+                supernaturally deficient in originality rapped out theirs.
+            </p>
+
+            <p>
+                Mere messages in the earthly order of events had lately come to the English Crown and People,
+                from a congress of British subjects in America.
+            </p>
+
+            <p>
+                France, less favoured on the whole as to matters spiritual than her sister of the shield and trident,
+                rolled with exceeding smoothness down hill, making paper money and spending it.
+            </p>
+
+            <p>
+                Under the guidance of her Christian pastors,
+                she entertained herself, besides, with such humane achievements
+                as sentencing a youth to have his hands cut off,
+                his tongue torn out with pincers, and his body burned alive.
+            </p>
+
+            <p>
+                Amidst all the changing scenes of this world,
+                there was a rough old mail coach struggling through the mud of England,
+                carrying passengers wrapped in cloaks and suspicion.
+            </p>
+
+            <p>
+                Every rider mistrusted every other rider,
+                and every sound in the darkness carried with it the threat of danger.
+            </p>
+
+            <p>
+                The Dover road lay, as to him, beyond the Dover mail,
+                as it lumbered up Shooter’s Hill.
+            </p>
+
+            <p>
+                The guard on the coach stood ready with his blunderbuss,
+                while the horses steamed in the bitter cold night air.
+            </p>
+
+            <p>
+                The mist was heavy and the road was treacherous,
+                but the journey pressed onward through uncertainty and fear.
+            </p>
+
+            <p>
+                Suddenly, a messenger approached through the fog,
+                shouting for the mail coach to halt.
+            </p>
+
+            <p>
+                Every hand moved instantly toward a weapon,
+                for robbery was common upon lonely roads at night.
+            </p>
+
+            <p>
+                The message, however, was meant for one passenger alone—
+                Mr. Jarvis Lorry of Tellson’s Bank.
+            </p>
+
+            <p>
+                The mysterious note contained only a few chilling words:
+                “Recalled to Life.”
+            </p>
+
+            <p>
+                Mr. Lorry read the message carefully,
+                his face pale beneath the moonlight,
+                as the wheels of the coach continued to grind against the frozen road.
+            </p>
+
+            <p>
+                Those strange words echoed in his mind again and again,
+                carrying with them memories buried deep within the shadows of the past.
+            </p>
+
+            <p>
+                Somewhere in France,
+                hidden from the world for many years,
+                a man long thought dead still breathed among the living.
+            </p>
+
+            <p>
+                And so began a story of sacrifice,
+                resurrection, revolution, and love—
+                a tale woven between two cities destined to change forever.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

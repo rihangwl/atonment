@@ -1,21 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Atonment E-Library</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>My Digital Library</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+        <style>
+                  footer {
+    background-color: rgba(92, 89, 89, 0.405);
+            text-align: center;
+            padding: 5px;
+            color: var(--muted);
+            font-size: 1rem;
+            border-top: 2px solid var(--border);
+        }
+
+ 
+
+        </style>
 </head>
 
 <body>
 
-    <h1>Welcome to Atonment E-Library</h1>
-    <p>Search and Download Your Favorite Books</p>
+    <!-- Backgroung Image -->
+    <video id="backgroundimage" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/newback.mp4') }}" type="video/mp4">
+    </video>
 
-    <input type="text" placeholder="Search book by title">
-    <button>Search</button>
-    <br><br>
-    <a href="/register">Register Here</a>
+    <div class="overlay"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <!-- <a href="/" class="logo-link">
+  <video autoplay loop muted playsinline width="120" height="auto">
+    <source src="Scene.mp4" type="video/mp4">
+  </video> -->
+        </a>
+
+    <a href="/books">Books</a>
+    <a href="/buy">Buy</a>
+    <a href="/rent">Rent</a>
+    <a href="/bemember">Pro</a>
+    <a href="/login">Login</a>
+    </nav>
+
+    <section id="hero_section">
+        <div class="hero-content">
+            <h1 class="hero-title">Atonement</h1>
+
+        <div class="search-box">
+        
+            <input type="text" id="searchInput" placeholder="Search books...">
+        
+            <div id="suggestions"></div>
+        
+            <button id="searchBtn">Search</button>
+        
+        </div>
+
+        </div>
+    </section>
+
+    <script>
+
+        const books = [
+
+            "How to Analyze People on Sight",
+            "The Art of Money Getting",
+            "The Richest Man in Babylon",
+            "Frankenstein",
+            "Pride and Prejudice",
+            "The Art of Public Speaking",
+            "A Tale of Two Cities",
+            "Think and Grow Rich"
+
+        ];
+
+        const searchInput = document.getElementById("searchInput");
+
+        const suggestions = document.getElementById("suggestions");
+
+        const searchBtn = document.getElementById("searchBtn");
+
+
+        // SHOW SUGGESTIONS
+
+        searchInput.addEventListener("keyup", function () {
+
+            let input = searchInput.value.toLowerCase();
+
+            suggestions.innerHTML = "";
+
+            if (input === "") {
+                return;
+            }
+
+            let filteredBooks = books.filter(book =>
+                book.toLowerCase().includes(input)
+            );
+
+            filteredBooks.forEach(book => {
+
+                let item = document.createElement("div");
+
+                item.innerText = book;
+
+                item.classList.add("suggestion-item");
+
+                item.addEventListener("click", function () {
+
+                    searchInput.value = book;
+
+                    suggestions.innerHTML = "";
+
+                });
+
+                suggestions.appendChild(item);
+
+            });
+
+        });
+
+
+        // SEARCH BUTTON
+
+        function searchBook() {
+
+            let query = searchInput.value;
+
+            window.location.href = "/search?q=" + encodeURIComponent(query);
+
+        }
+
+        searchBtn.addEventListener("click", searchBook);
+
+
+        // ENTER KEY
+
+        searchInput.addEventListener("keydown", function (event) {
+
+            if (event.key === "Enter") {
+
+                searchBook();
+
+            }
+
+        });
+
+    </script>
+
 
 </body>
 
+<footer>© 2026 Atonement – My Digital Library. All rights reserved.</footer>
 </html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* ── Google Fonts: Playfair Display for headings, Lato for body ── */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap');
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ── CSS Variables: color palette & theme ── */
+        :root {
+            --bg: #0f0e13;
+            --surface: #1a1825;
+            --card: #211f2e;
+            --accent: #c9a96e;
+            /* warm gold — premium library feel */
+            --accent2: #7c6df0;
+            /* purple highlight */
+            --text: #f0ece0;
+            --muted: #9590a8;
+            --border: #2e2b3e;
+            --tag-bg: #2a2640;
+            --rent-btn: #c9a96e;
+            --rent-btn-text: #0f0e13;
+            --badge-new: #7c6df0;
+            --badge-hot: #c94a4a;
+            --star: #c9a96e;
+            --green: #4caf7d;
+            --red: #c94a4a;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            border-bottom: 1px solid var(--border);
+            background: #0f0e13ee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover,
+        nav .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .cart-btn {
+            background: var(--accent);
+            color: var(--rent-btn-text);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── HERO SECTION ── */
+        .hero {
+            text-align: center;
+            padding: 60px 40px 40px;
+            background: radial-gradient(ellipse at top, #2a2150 0%, #0f0e13 70%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .hero h1 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 16px;
+            margin: 14px auto 28px;
+            max-width: 520px;
+        }
+
+        /* ── SEARCH BAR ── */
+        .search-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 10px 20px;
+            width: 480px;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text);
+            font-size: 14px;
+            width: 100%;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-bar svg {
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        /* ── STATS ROW ── */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .stat .lbl {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* ── CATEGORY TABS ── */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 28px 40px 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 9px 24px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: var(--rent-btn-text);
+            border-color: var(--accent);
+        }
+
+        .tab-btn .tab-icon {
+            font-size: 16px;
+        }
+
+        /* ── CATEGORY SECTION ── */
+        .category-section {
+            padding: 0 30px 50px;
+        }
+
+        .cat-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            padding: 0 10px;
+        }
+
+        .cat-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--text);
+        }
+
+        .cat-header h2 span {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .cat-header a {
+            font-size: 13px;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .cat-header a:hover {
+            color: var(--accent);
+        }
+
+        /* ── SLIDER WRAPPER ── */
+        .slider-outer {
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 10px 10px 20px;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        .slider-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Arrow buttons for slider */
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .arrow-btn:hover {
+            background: var(--accent);
+            color: var(--rent-btn-text);
+            border-color: var(--accent);
+        }
+
+        .arrow-left {
+            left: -12px;
+        }
+
+        .arrow-right {
+            right: -12px;
+        }
+
+        /* ── BOOK CARD ── */
+        .book-card {
+            flex: 0 0 190px;
+            scroll-snap-align: start;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+
+        /* Gradient book cover using a color + title initials */
+        .book-cover {
+            height: 180px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            padding: 14px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-cover .cover-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-cover .cover-author {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.75);
+            margin-top: 6px;
+            z-index: 1;
+        }
+
+        /* Decorative book spine line */
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 2px;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 3px 7px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            z-index: 5;
+        }
+
+        .badge-new {
+            background: var(--badge-new);
+            color: #fff;
+        }
+
+        .badge-hot {
+            background: var(--badge-hot);
+            color: #fff;
+        }
+
+        .badge-avail {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .book-info {
+            padding: 12px 12px 14px;
+        }
+
+        .book-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.4;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-author {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: var(--star);
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .review-count {
+            color: var(--muted);
+            font-size: 10px;
+            margin-left: 4px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .price small {
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .rent-btn {
+            background: var(--rent-btn);
+            color: var(--rent-btn-text);
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .rent-btn:hover {
+            opacity: 0.85;
+            transform: scale(1.04);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            color: var(--muted);
+            font-size: 9px;
+            padding: 2px 7px;
+            border-radius: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+            background: var(--surface);
+        }
+
+        footer span {
+            color: var(--accent);
+        }
+
+        /* ── CART TOAST ── */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--green);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ════════════════════════════════════════════════
+     NAVBAR — top navigation with logo and links
+════════════════════════════════════════════════ -->
+    <nav>
+        <div class="logo">Book<span>Nest</span> 📚</div>
+        <ul class="nav-links">
+            <a href="/books">Books</a>
+            <a href="/buy">Buy</a>
+            <a href="/rent">Rent</a>
+            <a href="/bemember">Pro</a>
+            <a href="/login">Login</a>
+        </ul>
+        <div class="nav-actions">
+            <button class="cart-btn" id="cartBtn">🛒 Cart (<span id="cartCount">0</span>)</button>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════════════════════════
+     HERO — page title and search bar
+════════════════════════════════════════════════ -->
+    <div class="hero">
+        <h1>Rent a Book, <em>Expand Your World</em></h1>
+        <p>Explore hundreds of titles across Fiction, Finance, Self-Help & Technology — affordable weekly rentals.</p>
+        <div class="search-wrap">
+            <div class="search-bar">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" placeholder="Search by title, author, or category..." id="searchInput"
+                    oninput="filterBooks(this.value)">
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+     STATS ROW — quick site metrics
+════════════════════════════════════════════════ -->
+    <div class="stats-row">
+        <div class="stat">
+            <div class="num">36</div>
+            <div class="lbl">BOOKS AVAILABLE</div>
+        </div>
+        <div class="stat">
+            <div class="num">4</div>
+            <div class="lbl">CATEGORIES</div>
+        </div>
+        <div class="stat">
+            <div class="num">₹29</div>
+            <div class="lbl">STARTS AT</div>
+        </div>
+        <div class="stat">
+            <div class="num">7-Day</div>
+            <div class="lbl">RENTAL PERIOD</div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+     CATEGORY TABS — filter by category
+════════════════════════════════════════════════ -->
+    <div class="tabs" id="tabsRow">
+        <button class="tab-btn active" onclick="filterCat('all', this)"><span class="tab-icon">🌐</span> All</button>
+        <button class="tab-btn" onclick="filterCat('fiction', this)"><span class="tab-icon">📖</span> Fiction</button>
+        <button class="tab-btn" onclick="filterCat('finance', this)"><span class="tab-icon">💰</span> Finance</button>
+        <button class="tab-btn" onclick="filterCat('selfhelp', this)"><span class="tab-icon">🌱</span>
+            Self-Help</button>
+        <button class="tab-btn" onclick="filterCat('technology', this)"><span class="tab-icon">💻</span>
+            Technology</button>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+     MAIN CONTENT — dynamically rendered category sliders
+════════════════════════════════════════════════ -->
+    <main id="mainContent" class="category-section"></main>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 <span>BookNest</span> — Read More, Pay Less. Built with Python 🐍 &amp; HTML
+    </footer>
+
+    <!-- Toast notification for cart -->
+    <div id="toast">✅ Added to cart!</div>
+
+    <script>
+        /*
+         * ═══════════════════════════════════════════════════════════
+         *  BOOK DATA — all 4 categories with books, authors, tags
+         *  Random price (₹29-₹89), rating (3.5-5.0), reviews (50-900)
+         *  are generated using seeded pseudorandom logic per book
+         * ═══════════════════════════════════════════════════════════
+         */
+
+        // Simple hash function to get a stable "random" number from a string
+        // This ensures each book always gets the same price & rating
+        function hashStr(s) {
+            let h = 0;
+            for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+            return Math.abs(h);
+        }
+
+        // Generate consistent price between min-max from book title
+        function stableRand(title, min, max) {
+            return min + (hashStr(title) % (max - min + 1));
+        }
+
+        // Generate a star rating 3.5 to 5.0 in 0.5 steps
+        function stableRating(title) {
+            const ratings = [3.5, 3.8, 4.0, 4.2, 4.5, 4.7, 4.8, 5.0];
+            return ratings[hashStr(title + 'r') % ratings.length];
+        }
+
+        // Build star string like "★★★★☆"
+        function renderStars(rating) {
+            const full = Math.floor(rating);
+            const half = rating % 1 >= 0.5 ? 1 : 0;
+            const empty = 5 - full - half;
+            return '★'.repeat(full) + (half ? '✦' : '') + '☆'.repeat(empty);
+        }
+
+        // Pick a badge randomly per book (some get none)
+        function getBadge(title) {
+            const n = hashStr(title + 'b') % 5;
+            if (n === 0) return '<span class="badge badge-new">New</span>';
+            if (n === 1) return '<span class="badge badge-hot">🔥 Hot</span>';
+            if (n === 2) return '<span class="badge badge-avail">Available</span>';
+            return '';
+        }
+
+        // Cover gradient colors — picks 2 CSS colors per book for a unique cover
+        const COVER_PALETTES = [
+            ['#4a1c78', '#9b3fc4'], ['#1a3a5c', '#2d7fc1'], ['#7c1d1d', '#c94a4a'],
+            ['#1c4a32', '#3db87a'], ['#4a3a1c', '#c9a96e'], ['#1c2a4a', '#5b6df0'],
+            ['#4a1c3a', '#c96ea9'], ['#2a1c4a', '#7c6df0'], ['#1c3a4a', '#4ab8c4'],
+        ];
+        function getCoverStyle(title) {
+            const p = COVER_PALETTES[hashStr(title) % COVER_PALETTES.length];
+            return `background: linear-gradient(135deg, ${p[0]} 0%, ${p[1]} 100%);`;
+        }
+
+        // ─── BOOK LIBRARY DATA ───────────────────────────────────
+        const BOOKS = {
+            fiction: {
+                label: 'Fiction', icon: '📖',
+                books: [
+                    { title: "Pride and Prejudice", author: "Jane Austen", tags: ["Classic", "Romance", "19th C"] },
+                    { title: "Frankenstein", author: "Mary Shelley", tags: ["Gothic", "Horror", "SciFi"] },
+                    { title: "A Tale of Two Cities", author: "Charles Dickens", tags: ["Historical", "Drama"] },
+                    { title: "Dracula", author: "Bram Stoker", tags: ["Horror", "Gothic", "Classic"] },
+                    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", tags: ["Adventure", "Revenge"] },
+                    { title: "The Adventures of Sherlock", author: "Arthur Conan Doyle", tags: ["Mystery", "Detective"] },
+                    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", tags: ["Classic", "American"] },
+                    { title: "Alice's Adventures in Wonderland", author: "Lewis Carroll", tags: ["Fantasy", "Children"] },
+                    { title: "The Time Machine", author: "H.G. Wells", tags: ["SciFi", "Adventure"] },
+                ]
+            },
+            finance: {
+                label: 'Finance', icon: '💰',
+                books: [
+                    { title: "The Richest Man in Babylon", author: "George S. Clason", tags: ["Wealth", "Classic"] },
+                    { title: "Think and Grow Rich", author: "Napoleon Hill", tags: ["Mindset", "Wealth"] },
+                    { title: "The Art of Money Getting", author: "P.T. Barnum", tags: ["Entrepreneurship"] },
+                    { title: "The Science of Getting Rich", author: "Wallace D. Wattles", tags: ["Wealth", "Law of Attraction"] },
+                    { title: "The Path to Prosperity", author: "James Allen", tags: ["Mindset", "Success"] },
+                    { title: "Personal Finance", author: "Multiple Authors", tags: ["Budgeting", "Planning"] },
+                    { title: "NSDL Primer on Personal Finance", author: "NSDL", tags: ["Investing", "India"] },
+                    { title: "Money & Youth", author: "Gail Vaz-Oxlade", tags: ["Youth", "Budgeting"] },
+                    { title: "Your Money or Your Life", author: "Vicki Robin", tags: ["FIRE", "Investing"] },
+                ]
+            },
+            selfhelp: {
+                label: 'Self-Help', icon: '🌱',
+                books: [
+                    { title: "The Art of Public Speaking", author: "Dale Carnegie", tags: ["Communication", "Skills"] },
+                    { title: "How to Analyze People on Sight", author: "E. Blackmar Baltzell", tags: ["Psychology", "People"] },
+                    { title: "How to Live on 24 Hours a Day", author: "Arnold Bennett", tags: ["Productivity", "Time"] },
+                    { title: "Think And Grow Rich", author: "Napoleon Hill", tags: ["Mindset", "Success"] },
+                    { title: "Bhagvad-Gita — Self-help", author: "Various Scholars", tags: ["Spirituality", "India"] },
+                    { title: "Personal Finance", author: "Multiple Authors", tags: ["Finance", "Planning"] },
+                    { title: "NSDL Primer on Finance", author: "NSDL", tags: ["Investing", "Basics"] },
+                    { title: "Atomic Habits", author: "James Clear", tags: ["Habits", "Growth"] },
+                    { title: "The Power of Now", author: "Eckhart Tolle", tags: ["Mindfulness", "Spiritual"] },
+                ]
+            },
+            technology: {
+                label: 'Technology', icon: '💻',
+                books: [
+                    { title: "Python Data Science Handbook", author: "Jake VanderPlas", tags: ["Python", "Data", "ML"] },
+                    { title: "Deep Learning", author: "Goodfellow et al.", tags: ["AI", "Neural Nets"] },
+                    { title: "Eloquent JavaScript", author: "Marijn Haverbeke", tags: ["JavaScript", "Web"] },
+                    { title: "Intro to Statistical Learning", author: "James, Hastie et al.", tags: ["Statistics", "ML"] },
+                    { title: "Dive into Deep Learning", author: "Zhang, Lipton et al.", tags: ["DL", "PyTorch"] },
+                    { title: "Think Python", author: "Allen B. Downey", tags: ["Python", "Beginner"] },
+                    { title: "OS: Three Easy Pieces", author: "Arpaci-Dusseau", tags: ["Systems", "OS"] },
+                    { title: "Open Source Applications", author: "A. Brown, G. Wilson", tags: ["Architecture", "Dev"] },
+                    { title: "Automate the Boring Stuff", author: "Al Sweigart", tags: ["Python", "Automation"] },
+                ]
+            }
+        };
+
+        let cartCount = 0;  // Track cart items
+
+        // ─── RENDER A SINGLE BOOK CARD ────────────────────────────
+        // Creates the HTML string for one book card
+        function renderCard(book, catKey) {
+            const price = stableRand(book.title, 29, 89);       // ₹29–₹89
+            const reviews = stableRand(book.title + 'rv', 50, 900); // 50–900 reviews
+            const rating = stableRating(book.title);
+            const stars = renderStars(rating);
+            const badge = getBadge(book.title);
+            const cover = getCoverStyle(book.title);
+            const tagsHTML = book.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+            return `
+    <div class="book-card" data-cat="${catKey}" data-title="${book.title.toLowerCase()}" data-author="${book.author.toLowerCase()}">
+      <div class="book-cover" style="${cover}">
+        ${badge}
+        <div class="cover-title">${book.title}</div>
+        <div class="cover-author">${book.author}</div>
+      </div>
+      <div class="book-info">
+        <div class="book-title">${book.title}</div>
+        <div class="book-author">— ${book.author}</div>
+        <div class="stars">${stars} <span class="review-count">(${reviews})</span></div>
+        <div class="tags">${tagsHTML}</div>
+        <div class="price-row">
+          <div class="price">₹${price} <small>/week</small></div>
+          <button class="rent-btn" onclick="addToCart('${book.title}')">Rent Now</button>
+        </div>
+      </div>
+    </div>`;
+        }
+
+        // ─── RENDER ALL CATEGORY SECTIONS ────────────────────────
+        // Builds each category block with heading + horizontal slider
+        function renderAll(showCat = 'all', search = '') {
+            const main = document.getElementById('mainContent');
+            main.innerHTML = '';
+
+            Object.entries(BOOKS).forEach(([catKey, cat]) => {
+                // If a category tab is active and it's not this one, skip
+                if (showCat !== 'all' && showCat !== catKey) return;
+
+                // Filter books by search query (title or author)
+                const filtered = cat.books.filter(b =>
+                    b.title.toLowerCase().includes(search) ||
+                    b.author.toLowerCase().includes(search) ||
+                    b.tags.some(t => t.toLowerCase().includes(search))
+                );
+                if (filtered.length === 0) return;
+
+                // Build slider HTML for this category
+                const cards = filtered.map(b => renderCard(b, catKey)).join('');
+                const sectionId = `slider-${catKey}`;
+
+                main.innerHTML += `
+      <div class="category-section" id="sec-${catKey}">
+        <div class="cat-header">
+          <h2><span>${cat.icon}</span>${cat.label}</h2>
+          <a href="#">See All →</a>
+        </div>
+        <div class="slider-outer">
+          <button class="arrow-btn arrow-left" onclick="slide('${sectionId}', -1)" aria-label="Scroll left">&#8592;</button>
+          <div class="slider-track" id="${sectionId}">${cards}</div>
+          <button class="arrow-btn arrow-right" onclick="slide('${sectionId}', 1)" aria-label="Scroll right">&#8594;</button>
+        </div>
+      </div>`;
+            });
+
+            // If nothing matches search
+            if (!main.innerHTML) {
+                main.innerHTML = `<p style="text-align:center; color:var(--muted); padding:60px 0; font-size:16px;">😔 No books found for "<strong>${search}</strong>"</p>`;
+            }
+        }
+
+        // ─── SLIDER SCROLL FUNCTION ──────────────────────────────
+        // Scrolls a slider track left (-1) or right (+1) by ~600px
+        function slide(id, dir) {
+            const el = document.getElementById(id);
+            if (el) el.scrollBy({ left: dir * 600, behavior: 'smooth' });
+        }
+
+        // ─── CATEGORY FILTER ─────────────────────────────────────
+        // Called when a tab button is clicked
+        let activeCat = 'all';
+        function filterCat(cat, btn) {
+            activeCat = cat;
+            // Update active tab style
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderAll(activeCat, document.getElementById('searchInput').value.toLowerCase());
+        }
+
+        // ─── SEARCH FILTER ───────────────────────────────────────
+        // Called on every keypress in the search bar
+        function filterBooks(val) {
+            renderAll(activeCat, val.toLowerCase());
+        }
+
+        // ─── CART LOGIC ──────────────────────────────────────────
+        // Adds a book to cart and shows a toast notification
+        function addToCart(title) {
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            const toast = document.getElementById('toast');
+            toast.textContent = `✅ "${title.length > 22 ? title.slice(0, 22) + '…' : title}" added!`;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        // ─── INITIAL RENDER on page load ─────────────────────────
+        renderAll('all', '');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Books – My Digital Library</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        /* --- Page background and default text --- */
+        body {
+            background: #0d0d0d;
+            color: #e8e2d9;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Navigation bar --- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 60px;
+            background: rgba(13, 13, 13, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #c9a96e;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #e8e2d9;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #c9a96e;
+        }
+
+        .nav-links a.active {
+            color: #c9a96e;
+        }
+
+        /* --- Hero section at top --- */
+        .hero {
+            padding: 80px 60px 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(201, 169, 110, 0.15);
+            color: #c9a96e;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+        .hero h1 em {
+            color: #c9a96e;
+            font-style: italic;
+        }
+
+        .hero p {
+            color: #7a7267;
+            max-width: 520px;
+        }
+
+        /* --- Filter tab buttons (All / Fiction / Finance ...) --- */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            padding: 28px 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #7a7267;
+            padding: 8px 22px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .filter-btn:hover {
+            background: #c9a96e;
+            border-color: #c9a96e;
+            color: #0d0d0d;
+        }
+
+        .filter-btn.active {
+            background: #c9a96e;
+            border-color: #c9a96e;
+            color: #0d0d0d;
+            font-weight: 500;
+        }
+
+        /* --- Each category block (Fiction, Finance, etc.) --- */
+        .category-section {
+            padding: 50px 60px 20px;
+        }
+
+        /* --- Section title row with gold left bar --- */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* Gold vertical bar before heading */
+        .section-header h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: #c9a96e;
+            border-radius: 4px;
+        }
+
+        .see-all {
+            color: #c9a96e;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+        /* --- Slider: the row of book cards --- */
+        .slider-wrapper {
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            /* horizontal scroll */
+            scroll-behavior: smooth;
+            padding-bottom: 16px;
+        }
+
+        /* Hide the scrollbar so it looks clean */
+        .slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slider {
+            scrollbar-width: none;
+        }
+
+        /* Left / Right arrow buttons */
+        .slider-btn {
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(13, 13, 13, 0.9);
+            color: #e8e2d9;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: #c9a96e;
+            color: #0d0d0d;
+        }
+
+        .slider-btn.prev {
+            left: -20px;
+        }
+
+        .slider-btn.next {
+            right: -20px;
+        }
+
+        /* --- Single book card --- */
+        .book-card {
+            flex-shrink: 0;
+            /* don't let card shrink */
+            width: 220px;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+        }
+
+        /* Colourful gradient at top of card acting as book cover */
+        .card-cover {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            position: relative;
+        }
+
+        /* Small category label on top-left of cover */
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #c9a96e;
+            font-size: 0.62rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            border: 1px solid rgba(201, 169, 110, 0.3);
+        }
+
+        /* Red discount ribbon in top-right */
+        .ribbon {
+            position: absolute;
+            top: 12px;
+            right: -6px;
+            background: #e05252;
+            color: #fff;
+            font-size: 0.62rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 2px 2px 0 2px;
+        }
+
+        /* Text area below the cover */
+        .card-body {
+            padding: 14px 16px 16px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            line-height: 1.35;
+            margin-bottom: 6px;
+            /* Limit to 2 lines */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-author {
+            color: #7a7267;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+
+        /* Star + rating row */
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #f5c842;
+            font-size: 0.7rem;
+        }
+
+        .rate-num {
+            color: #7a7267;
+            font-size: 0.72rem;
+        }
+
+        /* Price on left, Buy button on right */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-price {
+            font-size: 1.05rem;
+            color: #c9a96e;
+            font-weight: 500;
+        }
+
+        .btn-buy {
+            background: #c9a96e;
+            color: #0d0d0d;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-buy:hover {
+            background: #e8c98a;
+        }
+
+        /* --- Modal popup (opens when you click a card) --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            /* cover whole screen */
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /* hidden by default */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        /* Class added by JS to show the modal */
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 36px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #7a7267;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .modal-cover {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 24px;
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+        }
+
+        .modal-sub {
+            color: #7a7267;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+        }
+
+        .modal-desc {
+            color: #b0a898;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Row of metadata (price, rating, pages) */
+        .modal-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .meta-label {
+            color: #7a7267;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .meta-value {
+            font-size: 0.95rem;
+        }
+
+        .meta-value.gold {
+            color: #c9a96e;
+            font-size: 1.1rem;
+        }
+
+        /* Two action buttons inside modal */
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-main {
+            flex: 1;
+            background: #c9a96e;
+            color: #0d0d0d;
+            border: none;
+            padding: 12px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-main:hover {
+            background: #e8c98a;
+        }
+
+        .btn-outline {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e8e2d9;
+            padding: 12px 20px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            border-color: #c9a96e;
+            color: #c9a96e;
+        }
+
+        /* --- Toast notification (bottom-right) --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #161616;
+            border: 1px solid #c9a96e;
+            color: #e8e2d9;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            z-index: 300;
+            /* hidden by default */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast b {
+            color: #c9a96e;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #7a7267;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav>
+        <a class="nav-brand" href="index.html">Atonement</a>
+        <ul class="nav-links">
+            <a href="/books">Books</a>
+            <a href="/buy">Buy</a>
+            <a href="/rent">Rent</a>
+            <a href="/bemember">Pro</a>
+            <a href="/login">Login</a>
+        </ul>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero-tag">📚 Curated Collection</div>
+        <h1>Buy Your Next <em>Favourite</em> Book</h1>
+        <p>Handpicked titles across Fiction, Finance, Self-Help, and Technology — own them forever at the best prices.
+        </p>
+    </section>
+
+    <!-- ========== FILTER TABS ========== -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="jumpTo('all',   this)">All</button>
+        <button class="filter-btn" onclick="jumpTo('fiction',   this)">Fiction</button>
+        <button class="filter-btn" onclick="jumpTo('finance',   this)">Finance</button>
+        <button class="filter-btn" onclick="jumpTo('selfhelp',  this)">Self-Help</button>
+        <button class="filter-btn" onclick="jumpTo('technology',this)">Technology</button>
+    </div>
+
+    <!-- ========== BOOK SECTIONS (filled by JS) ========== -->
+    <main id="all"></main>
+
+    <!-- ========== MODAL ========== -->
+    <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal(null, true)">✕</button>
+            <div class="modal-cover" id="m-cover"></div>
+            <h3 id="m-title"></h3>
+            <p class="modal-sub" id="m-author"></p>
+            <p class="modal-desc" id="m-desc"></p>
+            <div class="modal-meta">
+                <div>
+                    <span class="meta-label">Price</span>
+                    <span class="meta-value gold" id="m-price"></span>
+                </div>
+                <div>
+                    <span class="meta-label">Rating</span>
+                    <span class="meta-value" id="m-rating"></span>
+                </div>
+                <div>
+                    <span class="meta-label">Pages</span>
+                    <span class="meta-value" id="m-pages"></span>
+                </div>
+                <div>
+                    <span class="meta-label">Language</span>
+                    <span class="meta-value">English</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-main" id="m-buy">Buy Now</button>
+                <button class="btn-outline" id="m-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast" id="toast"><b id="toast-msg"></b></div>
+
+    <footer>© 2026 Atonement – My Digital Library</footer>
+
+    <script>
+
+        /* ====================================================
+           STEP 1 — Book data
+           Each category has a list of books.
+           Each book has: title, author, short description,
+           and a CSS gradient used as the cover colour.
+        ==================================================== */
+
+        var fiction = [
+            { title: "Pride and Prejudice", author: "Jane Austen", desc: "A witty story about love, class and misunderstandings in Regency England.", gradient: "linear-gradient(135deg,#6a3093,#a044ff)" },
+            { title: "Frankenstein", author: "Mary Shelley", desc: "A scientist creates life and faces horrifying consequences.", gradient: "linear-gradient(135deg,#1a1a2e,#16213e)" },
+            { title: "A Tale of Two Cities", author: "Charles Dickens", desc: "A historical novel set during the French Revolution.", gradient: "linear-gradient(135deg,#c94b4b,#4b134f)" },
+            { title: "Dracula", author: "Bram Stoker", desc: "The original vampire story — chilling and eternally gripping.", gradient: "linear-gradient(135deg,#200122,#6f0000)" },
+            { title: "The Count of Monte Cristo", author: "Alexandre Dumas", desc: "An epic saga of betrayal, escape and carefully planned revenge.", gradient: "linear-gradient(135deg,#373b44,#4286f4)" },
+            { title: "The Adventures of Sherlock Holmes", author: "Arthur Conan Doyle", desc: "Detective Sherlock Holmes solves London's most baffling crimes.", gradient: "linear-gradient(135deg,#2c3e50,#bdc3c7)" },
+            { title: "The Great Gatsby", author: "F. Scott Fitzgerald", desc: "The Roaring Twenties and the hollowness of the American Dream.", gradient: "linear-gradient(135deg,#f7971e,#ffd200)" },
+            { title: "Alice's Adventures in Wonderland", author: "Lewis Carroll", desc: "A girl falls into a fantastical world of bizarre logic and wonder.", gradient: "linear-gradient(135deg,#ee9ca7,#ffdde1)" },
+            { title: "The Time Machine", author: "H.G. Wells", desc: "A scientist travels to the far future and discovers humanity's strange fate.", gradient: "linear-gradient(135deg,#134e5e,#71b280)" }
+        ];
+
+        var finance = [
+            { title: "The Richest Man in Babylon", author: "George S. Clason", desc: "Ancient Babylon parables packed with timeless money wisdom.", gradient: "linear-gradient(135deg,#f6d365,#fda085)" },
+            { title: "Think and Grow Rich", author: "Napoleon Hill", desc: "13 principles of success learned from 500 wealthy people.", gradient: "linear-gradient(135deg,#a18cd1,#fbc2eb)" },
+            { title: "The Art of Money Getting", author: "P.T. Barnum", desc: "Classic money advice from the famous showman — still useful today.", gradient: "linear-gradient(135deg,#43e97b,#38f9d7)" },
+            { title: "The Science of Getting Rich", author: "Wallace D. Wattles", desc: "A guide to creating wealth through focused thought and action.", gradient: "linear-gradient(135deg,#f093fb,#f5576c)" },
+            { title: "The Path to Prosperity", author: "James Allen", desc: "Practical and spiritual steps for building lasting wealth.", gradient: "linear-gradient(135deg,#4facfe,#00f2fe)" },
+            { title: "Personal Finance", author: "Various Authors", desc: "A full guide to budgeting, investing, and financial freedom.", gradient: "linear-gradient(135deg,#43cbff,#9708cc)" },
+            { title: "NSDL Primer on Personal Finance", author: "NSDL", desc: "Simple intro to demat accounts, mutual funds, and Indian markets.", gradient: "linear-gradient(135deg,#667eea,#764ba2)" },
+            { title: "Money & Youth", author: "Various Authors", desc: "Smart money habits and investing tips for young people.", gradient: "linear-gradient(135deg,#f77062,#fe5196)" }
+        ];
+
+        var selfhelp = [
+            { title: "The Art of Public Speaking", author: "Dale Carnegie", desc: "Master confident speaking and captivate any audience.", gradient: "linear-gradient(135deg,#fd746c,#ff9068)" },
+            { title: "How to Analyze People on Sight", author: "Benedict & Others", desc: "Read personality types and human behaviour at first glance.", gradient: "linear-gradient(135deg,#6a3093,#a044ff)" },
+            { title: "How to Live on 24 Hours a Day", author: "Arnold Bennett", desc: "A timeless guide to managing your day and unlocking your potential.", gradient: "linear-gradient(135deg,#11998e,#38ef7d)" },
+            { title: "Think And Grow Rich", author: "Napoleon Hill", desc: "The classic mindset book that has inspired millions worldwide.", gradient: "linear-gradient(135deg,#f7971e,#ffd200)" },
+            { title: "Bhagavad Gita – A Self-Help Treatise", author: "Ancient Text", desc: "Timeless wisdom on duty, purpose, and overcoming self-doubt.", gradient: "linear-gradient(135deg,#fc4a1a,#f7b733)" },
+            { title: "Personal Finance", author: "Various Authors", desc: "Build discipline, budgeting habits, and a growth mindset.", gradient: "linear-gradient(135deg,#43cbff,#9708cc)" },
+            { title: "NSDL Primer on Personal Finance", author: "NSDL", desc: "Beginner-friendly primer on savings and financial planning.", gradient: "linear-gradient(135deg,#667eea,#764ba2)" },
+            { title: "Money & Youth", author: "Various Authors", desc: "Empowering young people to take charge of their financial future.", gradient: "linear-gradient(135deg,#f77062,#fe5196)" }
+        ];
+
+        var technology = [
+            { title: "Python Data Science Handbook", author: "Jake VanderPlas", desc: "Complete guide to NumPy, Pandas, Matplotlib, and Scikit-Learn.", gradient: "linear-gradient(135deg,#1565c0,#0097a7)" },
+            { title: "Deep Learning", author: "Goodfellow et al.", desc: "The definitive textbook on neural networks and modern AI.", gradient: "linear-gradient(135deg,#0f2027,#2c5364)" },
+            { title: "Eloquent JavaScript", author: "Marijn Haverbeke", desc: "A modern, hands-on introduction to JavaScript programming.", gradient: "linear-gradient(135deg,#f7971e,#ffd200)" },
+            { title: "An Introduction to Statistical Learning", author: "James, Witten et al.", desc: "Accessible ML covering regression, classification, and resampling.", gradient: "linear-gradient(135deg,#134e5e,#71b280)" },
+            { title: "Dive into Deep Learning", author: "Zhang et al.", desc: "Code-first approach to learning deep learning architectures.", gradient: "linear-gradient(135deg,#4776e6,#8e54e9)" },
+            { title: "Think Python", author: "Allen B. Downey", desc: "Beginner Python with a focus on thinking like a programmer.", gradient: "linear-gradient(135deg,#11998e,#38ef7d)" },
+            { title: "Operating Systems: Three Easy Pieces", author: "Arpaci-Dusseau", desc: "OS fundamentals — virtualization, concurrency, and persistence.", gradient: "linear-gradient(135deg,#2c3e50,#fd746c)" },
+            { title: "The Architecture of Open Source Applications", author: "Various Authors", desc: "How 25 real open-source projects are designed and structured.", gradient: "linear-gradient(135deg,#373b44,#4286f4)" },
+            { title: "Automate the Boring Stuff with Python", author: "Al Sweigart", desc: "Practical Python for spreadsheets, PDFs, web scraping, and more.", gradient: "linear-gradient(135deg,#f6d365,#fda085)" }
+        ];
+
+        /* ====================================================
+           STEP 2 — Price and rating generators
+           We use the book title as a "seed" so the same book
+           always gets the same price / rating every page load.
+           It is NOT random each time — it only looks random.
+        ==================================================== */
+
+        /* Converts a string into a number between 0 and 1 */
+        function hashTitle(title) {
+            var h = 0;
+            for (var i = 0; i < title.length; i++) {
+                h = (h * 31 + title.charCodeAt(i)) % 100000;
+            }
+            return h / 100000;   /* gives a value like 0.47382 */
+        }
+
+        /* Price between ₹99 and ₹799 */
+        function getPrice(title) {
+            var n = hashTitle(title + 'price');   /* add 'price' to get different value than rating */
+            return '₹' + (Math.floor(n * 71) * 10 + 99);
+        }
+
+        /* Rating between 3.4 and 5.0 */
+        function getRating(title) {
+            var n = hashTitle(title + 'rating');
+            return (3.4 + n * 1.6).toFixed(1);   /* toFixed(1) gives one decimal place */
+        }
+
+        /* Review count between 120 and 12000 */
+        function getReviews(title) {
+            var n = hashTitle(title + 'reviews');
+            return Math.floor(n * 11880 + 120).toLocaleString();
+        }
+
+        /* Page count between 150 and 850 */
+        function getPages(title) {
+            var n = hashTitle(title + 'pages');
+            return Math.floor(n * 700 + 150);
+        }
+
+        /* About 1 in 5 books gets a discount ribbon */
+        function getDiscount(title) {
+            var n = hashTitle(title + 'disc');
+            if (n > 0.78) {
+                var pct = Math.floor(hashTitle(title + 'd2') * 30 + 10);
+                return pct + '% OFF';
+            }
+            return null;   /* no discount */
+        }
+
+        /* Turn a number like 4.3 into star symbols ★★★★☆ */
+        function makeStars(rating) {
+            var full = Math.floor(rating);
+            var half = (rating - full) >= 0.5 ? 1 : 0;
+            var empty = 5 - full - half;
+            var stars = '';
+            for (var i = 0; i < full; i++) stars += '★';
+            if (half) stars += '½';
+            for (var i = 0; i < empty; i++) stars += '☆';
+            return stars;
+        }
+
+        /* ====================================================
+           STEP 3 — Build the page sections
+           We loop through each category, create a <section>,
+           then loop through its books and create cards.
+        ==================================================== */
+
+        /* Each item: [section id, heading, emoji, book array] */
+        var allCategories = [
+            ['fiction', 'Fiction', '📖', fiction],
+            ['finance', 'Finance', '💰', finance],
+            ['selfhelp', 'Self-Help', '🌱', selfhelp],
+            ['technology', 'Technology', '💻', technology]
+        ];
+
+        var main = document.getElementById('all');
+
+        /* Loop through each category */
+        for (var c = 0; c < allCategories.length; c++) {
+
+            var id = allCategories[c][0];
+            var label = allCategories[c][1];
+            var icon = allCategories[c][2];
+            var books = allCategories[c][3];
+
+            /* Create the <section> element */
+            var section = document.createElement('section');
+            section.className = 'category-section';
+            section.id = id;
+
+            /* Section heading + "See all" link */
+            section.innerHTML =
+                '<div class="section-header">' +
+                '<h2>' + icon + ' ' + label + '</h2>' +
+                '<a class="see-all" href="#">See all →</a>' +
+                '</div>' +
+                '<div class="slider-wrapper">' +
+                '<button class="slider-btn prev" onclick="slide(\'' + id + '\',-1)">‹</button>' +
+                '<div class="slider" id="slider-' + id + '"></div>' +
+                '<button class="slider-btn next" onclick="slide(\'' + id + '\', 1)">›</button>' +
+                '</div>';
+
+            var sliderEl = section.querySelector('.slider');
+
+            /* Loop through books in this category and create a card for each */
+            for (var b = 0; b < books.length; b++) {
+
+                var book = books[b];
+                var price = getPrice(book.title);
+                var rating = parseFloat(getRating(book.title));
+                var reviews = getReviews(book.title);
+                var discount = getDiscount(book.title);
+
+                /* Build the card HTML as a string */
+                var ribbonHTML = '';
+                if (discount) {
+                    ribbonHTML = '<div class="ribbon">' + discount + '</div>';
+                }
+
+                var card = document.createElement('div');
+                card.className = 'book-card';
+
+                card.innerHTML =
+                    ribbonHTML +
+                    '<div class="card-cover" style="background:' + book.gradient + '">' +
+                    book.title.charAt(0) +
+                    '<div class="card-badge">' + label + '</div>' +
+                    '</div>' +
+                    '<div class="card-body">' +
+                    '<div class="card-title">' + book.title + '</div>' +
+                    '<div class="card-author">' + book.author + '</div>' +
+                    '<div class="card-rating">' +
+                    '<span class="stars">' + makeStars(rating) + '</span>' +
+                    '<span class="rate-num">' + rating + ' (' + reviews + ')</span>' +
+                    '</div>' +
+                    '<div class="card-footer">' +
+                    '<span class="card-price">' + price + '</span>' +
+                    '<button class="btn-buy" onclick="showToast(\'' + book.title.replace(/'/g, "\\'") + '\')">Buy</button>' +
+                    '</div>' +
+                    '</div>';
+
+                /* Clicking the card opens the detail modal */
+                card.onclick = (function (bk, cat, pr, rt, rv) {
+                    return function (e) {
+                        /* Only open modal if the Buy button was NOT clicked */
+                        if (!e.target.classList.contains('btn-buy')) {
+                            openModal(bk, cat, pr, rt, rv, getPages(bk.title));
+                        }
+                    };
+                })(book, label, price, rating, reviews);
+
+                sliderEl.appendChild(card);
+            }
+
+            main.appendChild(section);
+        }
+
+        /* ====================================================
+           STEP 4 — Slider scrolling
+           Scrolls the card row left or right when arrow clicked.
+        ==================================================== */
+        function slide(id, direction) {
+            var el = document.getElementById('slider-' + id);
+            el.scrollLeft += direction * 720;   /* move by ~3 card widths */
+        }
+
+        /* ====================================================
+           STEP 5 — Filter tab scrolling
+           Clicking a tab scrolls the page to that section.
+        ==================================================== */
+        function jumpTo(id, btn) {
+            /* Remove active from all tabs, add to clicked one */
+            var tabs = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            btn.classList.add('active');
+
+            if (id === 'all') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                var target = document.getElementById(id);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        /* ====================================================
+           STEP 6 — Modal: show book details on card click
+        ==================================================== */
+        function openModal(book, category, price, rating, reviews, pages) {
+            /* Fill in all the modal fields */
+            document.getElementById('m-cover').style.background = book.gradient;
+            document.getElementById('m-cover').textContent = book.title.charAt(0);
+            document.getElementById('m-title').textContent = book.title;
+            document.getElementById('m-author').textContent = 'by ' + book.author + ' · ' + category;
+            document.getElementById('m-desc').textContent = book.desc;
+            document.getElementById('m-price').textContent = price;
+            document.getElementById('m-rating').textContent = '⭐ ' + rating + ' (' + reviews + ')';
+            document.getElementById('m-pages').textContent = pages + ' pages';
+
+            /* Set up the Buy Now and Add to Cart buttons */
+            document.getElementById('m-buy').onclick = function () {
+                showToast('Purchase of "' + book.title + '" started!');
+                closeModal(null, true);
+            };
+            document.getElementById('m-cart').onclick = function () {
+                showToast('"' + book.title + '" added to cart!');
+                closeModal(null, true);
+            };
+
+            /* Show the modal */
+            document.getElementById('modal').classList.add('open');
+        }
+
+        /* Close when clicking outside the white box, or the ✕ button */
+        function closeModal(e, force) {
+            if (force || (e && e.target === document.getElementById('modal'))) {
+                document.getElementById('modal').classList.remove('open');
+            }
+        }
+
+        /* ====================================================
+           STEP 7 — Toast notification
+           Shows a brief message at the bottom-right corner.
+        ==================================================== */
+        function showToast(message) {
+            document.getElementById('toast-msg').textContent = message;
+            var toast = document.getElementById('toast');
+            toast.classList.add('show');
+
+            /* Auto-hide after 3 seconds */
+            setTimeout(function () {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+    </script>
+</body>
+
+</html>

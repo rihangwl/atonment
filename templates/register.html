@@ -1,21 +1,228 @@
-<!DOCTYPE html>
-<html>
+<<!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <title>Register - Atonment</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login - Atonement</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+            rel="stylesheet">
 
-<body>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-    <h2>Register</h2>
+            body {
+                display: flex;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                ;
+            }
 
-    <form method="POST">
-        <input type="text" name="name" placeholder="Enter Name" required><br><br>
-        <input type="email" name="email" placeholder="Enter Email" required><br><br>
-        <input type="password" name="password" placeholder="Enter Password" required><br><br>
-        <button type="submit">Register</button>
-    </form>
+            #backgroundimage {
+                position: fixed;
+                /* MUST be fixed */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -2;
+            }
 
-</body>
+            /* .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #4a474766;
+                z-index: -223;
+            } */
 
-</html>
+
+            .Create-card {
+                width: 900px;
+                /* fixed width */
+                height: 550px;
+                /* fixed height */
+                background: white;
+                border-radius: 15px;
+                /* rounded corners */
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                /* soft shadow */
+                display: flex;
+                /* ange do hiso me divide left & right karne ke liye*/
+                overflow: hidden;
+                /* important for rounded corners */
+            }
+
+            /* LEFT SIDE */
+            .left-side {
+                flex: 1;
+                background: linear-gradient(135deg, #d8a7b1, #8d6e63);
+                color: white;
+                padding: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .left-side img {
+                width: 200px;
+                margin-bottom: 20px;
+            }
+
+            .left-side h2 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .left-side p {
+                font-size: 14px;
+            }
+
+            /* RIGHT SIDE */
+            .right-side {
+                flex: 1;
+                padding: 60px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .right-side h2 {
+                margin-bottom: 30px;
+            }
+
+            .right-side form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .right-side input {
+                padding: 12px;
+                border: 1px solid #492b2b;
+                border-radius: 5px;
+                outline: none;
+            }
+
+
+            .right-side button {
+                padding: 12px;
+                background: linear-gradient(135deg, #d8a7b1, #8d6e63);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .right-side button:hover {
+                background: linear-gradient(135deg, #b76e79, #6d4c41);
+            }
+
+            .signup-text {
+                margin-top: 20px;
+                font-size: 16px;
+            }
+
+            .signup-text a {
+                color: #412424;
+                text-decoration: none;
+            }
+
+            .signup-text a:hover {
+                text-decoration: underline;
+            }
+
+        
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <video id="backgroundimage" autoplay muted loop playsinline>
+            <source src="{{ url_for('static', filename='videos/back2.mp4') }}" type="video/mp4">
+        </video>
+
+
+        <!-- <div class="overlay"></div> -->
+
+        <div class="Create-card">
+
+            <!-- LEFT SIDE -->
+            <div class="left-side">
+                <img src="{{ url_for('static', filename='images/bird.png') }}">
+                <h2>Welcome to Atonement</h2>
+                <p>Your personal digital library experience.</p>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="right-side">
+                <h2>Join With Us!</h2>
+
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="text" placeholder="Mobile Number" id="">
+                    <input type="email" placeholder="Gmail" required>
+                    <label for="age" id="age" style="margin-bottom: -14px; margin-left:2px ; margin-top: -7px;">Date of
+                        Birth</label>
+                    <input type="number" placeholder="Enter Your Age" required>
+
+                    <label style="margin-bottom: -14px; margin-left:2px ; margin-top: -7px;"></label>
+                    <select style="width:100%; padding:8px; margin-bottom:5px; padding: 12px;
+            border: 1px solid #492b2b;
+            border-radius: 5px;
+            outline: none;">
+                        <option value="">-- Select city --</option>
+                        <div style="font-size: 15PX;">
+                            <option>Delhi</option>
+                            <option>Mumbai</option>
+                            <option>Kolkata</option>
+                            <option>Chennai</option>
+                            <option>Bengaluru</option>
+                            <option>Hyderabad</option>
+                            <option>Pune</option>
+                            <option>Ahmedabad</option>
+                            <option>Jaipur</option>
+                            <option>Lucknow</option>
+                            <option>Bhopal</option>
+                            <option>Indore</option>
+                            <option>Chandigarh</option>
+                            <option>Patna</option>
+                            <option>Surat</option>
+                            <option>Kanpur</option>
+                            <option>Nagpur</option>
+                            <option>Ranchi</option>
+                            <option>Raipur</option>
+                            <option>Guwahati</option>
+                            <option>Amritsar</option>
+                            <option>Varanasi</option>
+                            <option>Coimbatore</option>
+                            <option>Visakhapatnam</option>
+                            <option>Mysuru</option>
+                            <option>Udaipur</option>
+                        </div>
+                    </select>
+
+                    <button type="submit">Sign In</button>
+
+                </form>
+
+                <p class="signup-text">
+                    Already have Account: <a href="/login"> Login here</a>
+                </p>
+            </div>
+
+        </div>
+    </body>
+
+    </html>

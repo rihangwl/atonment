@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frankenstein</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #2c241d;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2d1f16;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+
+            position: fixed;
+            top: 0;
+            width: 100%;
+
+            padding: 22px 50px;
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 40px;
+
+            background: rgba(15, 10, 8, 0.88);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+
+            color: #f5e6cc;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+
+            width: 75%;
+
+            margin: auto;
+
+            padding-top: 130px;
+
+            padding-bottom: 80px;
+        }
+
+        /* BUTTONS */
+
+        .top-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+
+            text-decoration: none;
+
+            background: #20150f;
+
+            color: #f5e6cc;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+
+            background: #d4af37;
+
+            color: black;
+        }
+
+        /* PAPER */
+
+        .book-page {
+
+            background: #f3e1c7;
+
+            padding: 80px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.2;
+        }
+
+        /* TITLE */
+
+        .book-title {
+
+            text-align: center;
+
+            font-size: 76px;
+
+            margin-bottom: 15px;
+
+            font-weight: 700;
+        }
+
+        .author {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+
+            font-style: italic;
+        }
+
+        /* CHAPTER */
+
+        .chapter {
+
+            text-align: center;
+
+            font-size: 44px;
+
+            margin-bottom: 40px;
+        }
+
+        /* TEXT */
+
+        .book-page p {
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            text-align: justify;
+        }
+
+        /* DROP CAP */
+
+        .book-page p:first-letter {
+
+            font-size: 60px;
+
+            font-weight: bold;
+
+            float: left;
+
+            line-height: 1;
+
+            margin-right: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- BOOK -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/frank.pdf') }}" download>
+
+                Download PDF
+
+            </a>
+
+            <a href="/fiction">
+
+                Back to Fiction
+
+            </a>
+
+        </div>
+
+        <!-- PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                Frankenstein
+            </h1>
+
+            <div class="author">
+                by Mary Shelley
+            </div>
+
+            <h2 class="chapter">
+                Letter I
+            </h2>
+
+            <p>
+                You will rejoice to hear that no disaster has accompanied the commencement
+                of an enterprise which you have regarded with such evil forebodings.
+                I arrived here yesterday, and my first task is to assure my dear sister
+                of my welfare and increasing confidence in the success of my undertaking.
+            </p>
+
+            <p>
+                I am already far north of London, and as I walk in the streets of
+                Petersburgh, I feel a cold northern breeze play upon my cheeks,
+                which braces my nerves and fills me with delight.
+            </p>
+
+            <p>
+                This breeze, which has travelled from the regions towards which
+                I am advancing, gives me a foretaste of those icy climates.
+                Inspirited by this wind of promise, my daydreams become more fervent
+                and vivid.
+            </p>
+
+            <p>
+                I try in vain to be persuaded that the pole is the seat of frost and desolation;
+                it ever presents itself to my imagination as the region of beauty and delight.
+            </p>
+
+            <p>
+                There, Margaret, the sun is forever visible, its broad disk just skirting
+                the horizon and diffusing a perpetual splendour.
+            </p>
+
+            <p>
+                There—for with your leave, my sister, I will put some trust in preceding navigators—
+                there snow and frost are banished; and, sailing over a calm sea,
+                we may be wafted to a land surpassing in wonders and in beauty every region hitherto discovered.
+            </p>
+
+            <p>
+                Its productions and features may be without example,
+                as the phenomena of the heavenly bodies undoubtedly are in those undiscovered solitudes.
+            </p>
+
+            <p>
+                What may not be expected in a country of eternal light?
+                I may there discover the wondrous power which attracts the needle
+                and may regulate a thousand celestial observations.
+            </p>
+
+            <p>
+                I shall satiate my ardent curiosity with the sight of a part of the world
+                never before visited, and may tread a land never before imprinted by the foot of man.
+            </p>
+
+            <p>
+                These are my enticements, and they are sufficient to conquer all fear of danger or death
+                and to induce me to commence this laborious voyage with the joy a child feels
+                when he embarks in a little boat with his holiday mates on an expedition of discovery.
+            </p>
+
+            <p>
+                But supposing all these conjectures to be false,
+                you cannot contest the inestimable benefit which I shall confer on all mankind
+                to the last generation.
+            </p>
+
+            <p>
+                One man's life or death were but a small price to pay for the acquirement
+                of the knowledge which I sought.
+            </p>
+
+            <p>
+                I preferred glory to every enticement that wealth placed in my path.
+                Oh, that some encouraging voice would answer in the affirmative!
+            </p>
+
+            <p>
+                My courage and my resolution are firm; but my hopes fluctuate,
+                and my spirits are often depressed.
+            </p>
+
+            <p>
+                I am about to proceed on a long and difficult voyage,
+                the emergencies of which will demand all my fortitude.
+            </p>
+
+            <p>
+                I am required not only to raise the spirits of others,
+                but sometimes to sustain my own, when theirs are failing.
+            </p>
+
+            <p>
+                This is the most favourable period for travelling in Russia.
+                They fly quickly over the snow in their sledges;
+                the motion is pleasant, and in my opinion far more agreeable than that of an English stagecoach.
+            </p>
+
+            <p>
+                The cold is not excessive, if you are wrapped in furs—a dress which I have already adopted.
+            </p>
+
+            <p>
+                I have no ambition to lose my life on the post-road between St. Petersburgh and Archangel.
+            </p>
+
+            <p>
+                Adieu, my dear Margaret.
+                Heaven shower down blessings on you,
+                and save me, that I may again and again testify my gratitude
+                for all your love and kindness.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

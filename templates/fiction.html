@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - Atonement</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND VIDEO */
+
+        #backgroundvideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 35px;
+
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+            color: #d4af37;
+        }
+
+        /* PAGE TITLE */
+
+        .page-title {
+            text-align: center;
+            color: white;
+            font-size: 90px;
+            margin-top: 130px;
+            margin-bottom: 45px;
+
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* BOOK GRID */
+
+        .books-container {
+            width: 90%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 30px;
+
+
+            padding-bottom: 90px;
+        }
+
+        /* CARD */
+
+        .book-card {
+            margin-bottom: 25px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            transition: 0.35s ease;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* CONTENT */
+
+        /* main title */
+        .book-info {
+            padding: 22px;
+            color: white;
+        }
+
+        .book-info h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        
+        /* Sub-title */
+        .book-info p {
+            color: #000000;
+            line-height: 1.6;
+            font-size: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        /* BUTTONS */
+
+        .book-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .book-buttons a {
+
+            flex: 1;
+
+            text-align: center;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        /* DOWNLOAD BUTTON */
+
+        .download-btn {
+            background: #d4af37;
+            color: black;
+        }
+
+        .download-btn:hover {
+            background: white;
+        }
+
+        /* READ BUTTON */
+
+        .read-btn {
+            background: white;
+            color: black;
+        }
+
+        .read-btn:hover {
+            background: #d4af37;
+        }
+
+         footer {
+    background-color: rgba(92, 89, 89, 0.405);
+            text-align: center;
+            padding: 5px;
+            color: var(--muted);
+            font-size: 1rem;
+            border-top: 2px solid var(--border);
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND VIDEO -->
+
+    <video id="backgroundvideo" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/spaceship.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/buy">Buy</a>
+        <a href="/rent">Rent</a>
+        <a href="/bemember">Pro</a>
+
+    </nav>
+
+    <!-- TITLE -->
+
+    <h1 class="page-title">Imaginations</h1>
+
+    <!-- BOOKS -->
+
+    <div class="books-container">
+
+        <!-- BOOK 1 -->
+
+        <div class="book-card">
+
+            <div class="book-info">
+
+                <h2>Pride and Prejudice</h2>
+
+                <p>
+                    A sharp-witted romance navigating class misunderstanding in 19th-century England.
+                </p>
+
+                <div class="book-buttons">
+
+                <a class="read-btn" href="/read_pride">
+                    Read
+                </a>
+                
+                <a class="download-btn" href="{{ url_for('static', filename='books/pride.pdf') }}" download>
+                    Download
+                </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOOK 2 -->
+
+        <div class="book-card">
+
+            <div class="book-info">
+
+                <h2>Frankenstein</h2>
+
+                <p>
+                    A Gothic tale of a scientist who creates life and the tragic consequences that follow.
+                </p>
+
+                <div class="book-buttons">
+
+                    <a class="read-btn" href="/read_frank">
+                        Read
+                    </a>
+                    
+                    <a class="download-btn" href="{{ url_for('static', filename='books/frank.pdf') }}" download>
+                        Download
+                    </a>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOOK 3 -->
+
+        <div class="book-card">
+
+            <div class="book-info">
+
+                <h2>A Tale of Two Cities</h2>
+
+                <p>
+                A sweeping historical drama set in London and Paris during the French Revolution.
+                </p>
+
+                <div class="book-buttons">
+
+                <a class="read-btn" href="/read_tale">
+                    Read
+                </a>
+                
+                <a class="download-btn" href="{{ url_for('static', filename='books/tale.pdf') }}" download>
+                    Download
+                </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOOK 4 -->
+
+        <div class="book-card">
+
+            <div class="book-info">
+
+                <h2>Dracula</h2>
+
+                <p>
+                The definitive vampire story told through letters and journals documenting a battle against ancient evil.
+                </p>
+
+                <div class="book-buttons">
+
+                    <a class="download-btn" href="{{ url_for('static', filename='books/book1.pdf') }}" download>
+                        Download
+                    </a>
+
+                    <a class="read-btn" href="#">
+                        Read
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOOK 5 -->
+
+        <div class="book-card">
+
+            <div class="book-info">
+
+                <h2>The Count of Monte Cristo</h2>
+
+                <p>
+                    An epic adventure of betrayal, hidden treasure, and a meticulously planned revenge.
+                </p>
+
+                <div class="book-buttons">
+
+                    <a class="download-btn" href="{{ url_for('static', filename='books/book2.pdf') }}" download>
+                        Download
+                    </a>
+
+                    <a class="read-btn" href="#">
+                        Read
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOOK 6 -->
+
+        <div class="book-card">
+
+            <div class="book-info">
+
+                <h2>The Adventures of Sherlock</h2>
+
+                <p>
+                    A collection of mysteries featuring the world’s most famous "consulting detective..
+                </p>
+
+                <div class="book-buttons">
+
+                    <a class="download-btn" href="#">
+                        Download
+                    </a>
+
+                    <a class="read-btn" href="#">
+                        Read
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BOOK 7 -->
+
+                <div class="book-card">
+                
+                    <div class="book-info">
+                
+                        <h2>The Great Gatsby</h2>
+                
+                        <p>
+                            A critique of the American Dream centered on a mysterious millionaire and his lost love.
+                
+                        <div class="book-buttons">
+                
+                            <a class="download-btn" href="#">
+                                Download
+                            </a>
+                
+                            <a class="read-btn" href="#">
+                                Read
+                            </a>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+
+                <!-- BOOK 8 -->
+
+                <div class="book-card">
+                
+                    <div class="book-info">
+                
+                        <h2>Alice's Adventures in Wonderland</h2>
+                
+                        <p>
+                            A surreal journey of a young girl who falls through a rabbit hole into a logical vacuum.
+                
+                        <div class="book-buttons">
+                
+                            <a class="download-btn" href="#">
+                                Download
+                            </a>
+                
+                            <a class="read-btn" href="#">
+                                Read
+                            </a>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+
+                                <!-- BOOK 9 -->
+
+                <div class="book-card">
+                
+                    <div class="book-info">
+                
+                        <h2>The Time Machine</h2>
+                
+                        <p>
+                        A foundational sci-fi novel about a Victorian inventor traveling to the far distant future.
+                
+                        <div class="book-buttons">
+                
+                            <a class="download-btn" href="#">
+                                Download
+                            </a>
+                
+                            <a class="read-btn" href="#">
+                                Read
+                            </a>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+
+      
+
+    </div>
+
+    <footer>© 2026 Atonement – My Digital Library. All rights reserved.</footer>
+
+</body>
+
+</html>

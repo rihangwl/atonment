@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Art of Public Speaking</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #21160f;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2c1c12;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            width: 100%;
+
+            padding: 22px 50px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 40px;
+
+            background: rgba(0, 0, 0, 0.85);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+
+            color: #f5e6cc;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+
+            width: 75%;
+
+            margin: auto;
+
+            padding-top: 130px;
+
+            padding-bottom: 80px;
+        }
+
+        /* TOP BUTTONS */
+
+        .top-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+
+            text-decoration: none;
+
+            background: #1b120d;
+
+            color: #f5e6cc;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+
+            background: #d4af37;
+
+            color: black;
+        }
+
+        /* BOOK PAGE */
+
+        .book-page {
+
+            background: #f2dfc0;
+
+            padding: 90px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.3;
+        }
+
+        /* TITLE */
+
+        .book-title {
+
+            text-align: center;
+
+            font-size: 72px;
+
+            margin-bottom: 15px;
+        }
+
+        .author {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+
+            font-style: italic;
+        }
+
+        .chapter {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 45px;
+        }
+
+        /* TEXT */
+
+        .book-page p {
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            text-align: justify;
+        }
+
+        .book-page p:first-letter {
+
+            font-size: 62px;
+
+            font-weight: bold;
+
+            float: left;
+
+            line-height: 1;
+
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- CONTAINER -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/speaking.pdf') }}" download>
+                Download PDF
+            </a>
+
+            <a href="/selfgrowth">
+                Back to Self Help
+            </a>
+
+        </div>
+
+        <!-- PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                The Art of Public Speaking
+            </h1>
+
+            <div class="author">
+                by Dale Carnegie
+            </div>
+
+            <h2 class="chapter">
+                The Power of Speech
+            </h2>
+
+            <p>
+                Public speaking is among the most powerful skills a person can develop.
+                Throughout history,
+                leaders, philosophers, revolutionaries,
+                and visionaries have shaped civilizations through words.
+            </p>
+
+            <p>
+                A confident voice can inspire courage,
+                influence decisions,
+                and awaken emotions hidden deep within the human heart.
+            </p>
+
+            <p>
+                Yet many people fear speaking before others more than almost anything else.
+                Nervousness tightens the throat,
+                weakens confidence,
+                and causes thoughts to disappear at the worst possible moments.
+            </p>
+
+            <p>
+                The truth, however,
+                is that great speakers are rarely born naturally gifted.
+                Most become skilled through practice,
+                preparation,
+                observation,
+                and persistence.
+            </p>
+
+            <p>
+                Effective speaking begins with belief.
+                A speaker who genuinely believes in their message
+                naturally speaks with more conviction and energy.
+            </p>
+
+            <p>
+                Audiences respond not only to words,
+                but to sincerity.
+                Authentic emotion carries greater power than memorized perfection.
+            </p>
+
+            <p>
+                Confidence grows through repetition.
+                Every speech delivered,
+                every discussion joined,
+                and every fear confronted strengthens communication ability.
+            </p>
+
+            <p>
+                One of the greatest mistakes speakers make
+                is focusing excessively upon themselves.
+                Fear increases when attention turns inward.
+            </p>
+
+            <p>
+                Strong speakers focus instead upon the audience.
+                Their purpose becomes serving,
+                informing,
+                persuading,
+                or inspiring listeners.
+            </p>
+
+            <p>
+                Preparation is essential.
+                A clear structure gives speech direction and confidence.
+                Ideas organized logically are easier for audiences to understand and remember.
+            </p>
+
+            <p>
+                Voice control also matters deeply.
+                Tone,
+                pace,
+                pauses,
+                and emphasis create emotional rhythm.
+            </p>
+
+            <p>
+                A monotonous voice quickly loses attention,
+                while variation keeps listeners engaged and emotionally connected.
+            </p>
+
+            <p>
+                Eye contact builds trust.
+                People naturally feel more connected when a speaker appears calm,
+                attentive,
+                and present.
+            </p>
+
+            <p>
+                Body language speaks constantly,
+                even during silence.
+                Posture,
+                gestures,
+                and facial expressions shape how messages are received.
+            </p>
+
+            <p>
+                Nervous habits such as avoiding eye contact,
+                fidgeting,
+                or speaking too rapidly weaken authority.
+            </p>
+
+            <p>
+                Powerful communicators understand the importance of simplicity.
+                Complicated language rarely impresses audiences.
+                Clear ideas delivered naturally create stronger impact.
+            </p>
+
+            <p>
+                Stories remain among the oldest and most effective speaking tools.
+                Human beings remember emotion and narrative more easily than raw information.
+            </p>
+
+            <p>
+                A meaningful story transforms abstract ideas into memorable experiences.
+            </p>
+
+            <p>
+                Persuasion depends greatly upon understanding human emotion.
+                Facts alone rarely change minds completely.
+                Emotion gives ideas movement and influence.
+            </p>
+
+            <p>
+                Courage develops gradually.
+                Every successful speaker once struggled with fear,
+                uncertainty,
+                and self-doubt.
+            </p>
+
+            <p>
+                What separates confident communicators from silent individuals
+                is the willingness to continue despite discomfort.
+            </p>
+
+            <p>
+                Public speaking is not merely performance.
+                It is connection.
+                It is the art of transferring thought and feeling from one mind to another.
+            </p>
+
+            <p>
+                In business,
+                leadership,
+                education,
+                and daily life,
+                communication often determines opportunity.
+            </p>
+
+            <p>
+                A person capable of expressing ideas clearly gains enormous advantages in every field.
+            </p>
+
+            <p>
+                The voice,
+                when disciplined and guided by purpose,
+                becomes one of the most influential instruments any individual can possess.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

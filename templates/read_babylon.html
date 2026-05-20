@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Richest Man in Babylon</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background: #2b1f17;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #2c1b12;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            width: 100%;
+
+            padding: 22px 50px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 40px;
+
+            background: rgba(15, 10, 8, 0.88);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+
+            color: #f5e6cc;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+
+            width: 75%;
+
+            margin: auto;
+
+            padding-top: 130px;
+
+            padding-bottom: 80px;
+        }
+
+        /* BUTTONS */
+
+        .top-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+
+            text-decoration: none;
+
+            background: #20150f;
+
+            color: #f5e6cc;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+
+            background: #d4af37;
+
+            color: black;
+        }
+
+        /* BOOK PAGE */
+
+        .book-page {
+
+            background: #f3e1c7;
+
+            padding: 85px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.3;
+        }
+
+        /* TITLE */
+
+        .book-title {
+
+            text-align: center;
+
+            font-size: 76px;
+
+            margin-bottom: 15px;
+
+            font-weight: 700;
+        }
+
+        .author {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+
+            font-style: italic;
+        }
+
+        /* CHAPTER */
+
+        .chapter {
+
+            text-align: center;
+
+            font-size: 44px;
+
+            margin-bottom: 45px;
+        }
+
+        /* TEXT */
+
+        .book-page p {
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            text-align: justify;
+        }
+
+        /* DROP LETTER */
+
+        .book-page p:first-letter {
+
+            font-size: 62px;
+
+            font-weight: bold;
+
+            float: left;
+
+            line-height: 1;
+
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- BOOK -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/babylon.pdf') }}" download>
+
+                Download PDF
+
+            </a>
+
+            <a href="/finance">
+
+                Back to Finance
+
+            </a>
+
+        </div>
+
+        <!-- PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                The Richest Man in Babylon
+            </h1>
+
+            <div class="author">
+                by George S. Clason
+            </div>
+
+            <h2 class="chapter">
+                The Man Who Desired Gold
+            </h2>
+
+            <p>
+                Bansir, the chariot builder of Babylon, sat upon the low wall surrounding his home
+                and stared sadly at the unfinished chariot before him.
+            </p>
+
+            <p>
+                His strong arms hung idle while his thoughts wandered toward the golden palaces
+                and overflowing treasures owned by the wealthy men of the city.
+            </p>
+
+            <p>
+                Babylon was the richest city in the ancient world.
+                Its towering walls, magnificent temples, and bustling markets
+                displayed wealth beyond imagination.
+            </p>
+
+            <p>
+                Yet among all that prosperity, Bansir remained poor.
+                Day after day he labored under the blazing sun,
+                but his purse was always empty.
+            </p>
+
+            <p>
+                Soon his close friend Kobbi, the musician, approached carrying his lyre.
+                Seeing Bansir troubled, he smiled and said,
+                “May the gods bless you with great wealth, my friend.”
+            </p>
+
+            <p>
+                Bansir laughed bitterly.
+                “Wealth? I have none. I work endlessly,
+                yet my family still struggles for bread.”
+            </p>
+
+            <p>
+                Kobbi sighed in agreement.
+                “The same curse follows me.
+                I entertain the rich with music,
+                but silver escapes my hands as quickly as water.”
+            </p>
+
+            <p>
+                The two friends reflected upon their youth,
+                remembering how they had once dreamed of becoming prosperous men.
+            </p>
+
+            <p>
+                “Why,” asked Bansir,
+                “do some men acquire gold so easily,
+                while others who labor harder remain poor forever?”
+            </p>
+
+            <p>
+                Kobbi lowered his voice.
+                “Perhaps we were never taught the laws of wealth.”
+            </p>
+
+            <p>
+                At that moment they remembered Arkad,
+                their childhood companion who had become the richest man in Babylon.
+            </p>
+
+            <p>
+                Arkad’s riches were legendary.
+                Kings sought his counsel,
+                merchants respected his wisdom,
+                and beggars envied his fortune.
+            </p>
+
+            <p>
+                Yet Arkad had once been as poor as they were.
+                If anyone understood the secret of gold,
+                surely it was him.
+            </p>
+
+            <p>
+                “Let us visit Arkad,” Kobbi proposed.
+                “Perhaps he will reveal how an ordinary man may acquire wealth.”
+            </p>
+
+            <p>
+                Bansir immediately agreed.
+                For the first time in many months,
+                hope stirred within him.
+            </p>
+
+            <p>
+                Together they walked through the crowded streets of Babylon,
+                passing merchants selling spices, silks, jewels, and perfumes.
+            </p>
+
+            <p>
+                Everywhere they looked they saw signs of riches—
+                golden ornaments, fine robes, and luxurious chariots.
+            </p>
+
+            <p>
+                Yet they also saw laborers burdened with exhaustion,
+                working endlessly while remaining trapped in poverty.
+            </p>
+
+            <p>
+                At last they arrived at the magnificent home of Arkad.
+                Marble pillars towered above them,
+                and servants moved silently through the grand halls.
+            </p>
+
+            <p>
+                Arkad welcomed his old friends warmly.
+                Though enormously wealthy,
+                he had not forgotten the days of his humble beginnings.
+            </p>
+
+            <p>
+                “Tell me,” said Arkad,
+                “why do your faces carry such sorrow?”
+            </p>
+
+            <p>
+                Bansir spoke honestly.
+                “We desire wealth,
+                yet gold continually escapes us.
+                Teach us the wisdom that made you rich.”
+            </p>
+
+            <p>
+                Arkad smiled thoughtfully.
+                “Gold comes gladly and in increasing quantity
+                to the man who understands its laws.”
+            </p>
+
+            <p>
+                He invited them to sit beside him beneath the warm Babylonian evening sky.
+            </p>
+
+            <p>
+                “I was once poor like you,” Arkad began.
+                “But I learned a lesson that changed my destiny forever:
+                a part of all I earn is mine to keep.”
+            </p>
+
+            <p>
+                The words sounded simple,
+                yet Bansir and Kobbi listened carefully.
+            </p>
+
+            <p>
+                Arkad continued,
+                “Most men pay everyone except themselves.
+                They give coins to merchants, landlords, and craftsmen,
+                but keep nothing for their own future.”
+            </p>
+
+            <p>
+                “Gold,” he explained,
+                “is like a servant.
+                If you save it and put it to work wisely,
+                it multiplies and labors for you endlessly.”
+            </p>
+
+            <p>
+                The old lamps of Babylon flickered softly as the night deepened.
+                The two friends realized they had spent their lives earning money,
+                but never learning how to keep it.
+            </p>
+
+            <p>
+                And so began their journey toward understanding
+                the ancient secrets of wealth, discipline, and financial freedom.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

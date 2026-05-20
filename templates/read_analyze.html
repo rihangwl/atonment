@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How to Analyze People on Sight</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #231811;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2b1b12;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            width: 100%;
+
+            padding: 22px 50px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 40px;
+
+            background: rgba(0, 0, 0, 0.85);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+
+            color: #f5e6cc;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+
+            width: 75%;
+
+            margin: auto;
+
+            padding-top: 130px;
+
+            padding-bottom: 80px;
+        }
+
+        /* BUTTONS */
+
+        .top-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+
+            text-decoration: none;
+
+            background: #1a120d;
+
+            color: #f5e6cc;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+
+            background: #d4af37;
+
+            color: black;
+        }
+
+        /* BOOK PAGE */
+
+        .book-page {
+
+            background: #f2dfc0;
+
+            padding: 90px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.3;
+        }
+
+        /* TITLE */
+
+        .book-title {
+
+            text-align: center;
+
+            font-size: 68px;
+
+            margin-bottom: 15px;
+        }
+
+        .author {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+
+            font-style: italic;
+        }
+
+        .chapter {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 45px;
+        }
+
+        /* TEXT */
+
+        .book-page p {
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            text-align: justify;
+        }
+
+        .book-page p:first-letter {
+
+            font-size: 62px;
+
+            font-weight: bold;
+
+            float: left;
+
+            line-height: 1;
+
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- CONTAINER -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/analyze.pdf') }}" download>
+                Download PDF
+            </a>
+
+            <a href="/selfgrowth">
+                Back to Self Help
+            </a>
+
+        </div>
+
+        <!-- PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                How to Analyze People on Sight
+            </h1>
+
+            <div class="author">
+                by Elsie Lincoln Benedict
+            </div>
+
+            <h2 class="chapter">
+                Understanding Human Nature
+            </h2>
+
+            <p>
+                Human beings reveal far more about themselves than they realize.
+                Through posture,
+                movement,
+                expression,
+                tone,
+                and behavior,
+                personality quietly announces itself to the world.
+            </p>
+
+            <p>
+                The ability to observe people carefully
+                is among the most valuable skills a person can develop.
+                It improves communication,
+                relationships,
+                leadership,
+                and understanding.
+            </p>
+
+            <p>
+                Many individuals move through life without truly studying human behavior.
+                They hear words,
+                but fail to notice emotion,
+                intention,
+                and character beneath them.
+            </p>
+
+            <p>
+                Observation requires patience.
+                Quick judgments often lead to misunderstanding,
+                while thoughtful attention reveals deeper truths.
+            </p>
+
+            <p>
+                Every personality possesses recognizable patterns.
+                Some people naturally dominate conversations,
+                while others prefer silence and reflection.
+            </p>
+
+            <p>
+                Certain individuals seek logic and structure,
+                while others rely heavily upon emotion and instinct.
+            </p>
+
+            <p>
+                Body language communicates constantly.
+                Folded arms may signal discomfort or defensiveness.
+                Steady eye contact often suggests confidence and sincerity.
+            </p>
+
+            <p>
+                Rapid movement and restless gestures may indicate nervousness,
+                impatience,
+                or high mental energy.
+            </p>
+
+            <p>
+                Facial expressions remain among the most revealing human signals.
+                Genuine emotion frequently appears before words can hide it.
+            </p>
+
+            <p>
+                A trained observer notices subtle reactions—
+                hesitation,
+                tension,
+                enthusiasm,
+                or uncertainty.
+            </p>
+
+            <p>
+                Voice also reveals personality.
+                Calm and measured speech often reflects emotional control,
+                while aggressive tone may expose insecurity or frustration.
+            </p>
+
+            <p>
+                Listening carefully is equally important.
+                Many people focus too much upon speaking
+                and too little upon understanding.
+            </p>
+
+            <p>
+                True communication depends upon attention.
+                The best observers study both what is said
+                and what remains unspoken.
+            </p>
+
+            <p>
+                Environment shapes behavior significantly.
+                Stress,
+                comfort,
+                fear,
+                and social surroundings influence how people react.
+            </p>
+
+            <p>
+                Therefore,
+                no single gesture should be interpreted blindly.
+                Human personality is complex and layered.
+            </p>
+
+            <p>
+                Confidence often attracts attention,
+                but confidence and arrogance are not identical.
+                Genuine confidence remains calm,
+                while arrogance seeks constant validation.
+            </p>
+
+            <p>
+                Emotional intelligence allows individuals
+                to recognize feelings in themselves and others.
+                This awareness strengthens relationships and decision-making.
+            </p>
+
+            <p>
+                People frequently communicate hidden needs through behavior.
+                Anger may conceal fear.
+                Silence may conceal sadness.
+                Humor may conceal insecurity.
+            </p>
+
+            <p>
+                Understanding these emotional layers
+                develops empathy and wisdom.
+            </p>
+
+            <p>
+                Successful leaders,
+                negotiators,
+                teachers,
+                and psychologists all rely heavily upon observation.
+            </p>
+
+            <p>
+                They understand that behavior often reveals truth more clearly than words alone.
+            </p>
+
+            <p>
+                However,
+                observation should never become manipulation.
+                Knowledge of human nature carries ethical responsibility.
+            </p>
+
+            <p>
+                The purpose of understanding people
+                should be connection,
+                not control.
+            </p>
+
+            <p>
+                Every human being desires recognition,
+                respect,
+                and understanding.
+                Those who learn to genuinely understand others
+                gain extraordinary influence in both personal and professional life.
+            </p>
+
+            <p>
+                In the end,
+                analyzing people is not about judging them harshly.
+                It is about becoming more aware,
+                perceptive,
+                compassionate,
+                and emotionally intelligent.
+            </p>
+
+            <p>
+                The deeper one understands human behavior,
+                the clearer the hidden patterns of society and relationships become.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

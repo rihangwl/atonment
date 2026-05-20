@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - Atonement</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND VIDEO */
+
+        #backgroundvideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 35px;
+
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+            color: #d4af37;
+        }
+
+        /* PAGE TITLE */
+
+        .page-title {
+            text-align: center;
+            color: white;
+            font-size: 90px;
+            margin-top: 130px;
+            margin-bottom: 50px;
+
+            font-family: 'Playfair Display', serif;
+            /* font-style: italic; */
+            text-shadow:0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        /* BOOK GRID */
+
+        /* CATEGORY GRID */
+
+.books-container {
+
+    width: 90%;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 35px;
+
+    padding-bottom: 80px;
+}
+
+/* CATEGORY CARD */
+
+.book-card {
+
+    position: relative;
+
+    height: 460px;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 30px;
+
+    transition: 0.4s ease;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* DIFFERENT THEMES */
+
+.card1 {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.card2 {
+    background: linear-gradient(135deg, #42275a, #734b6d);
+}
+
+.card3 {
+    background: linear-gradient(135deg, #134e5e, #71b280);
+}
+
+.card4 {
+    background: linear-gradient(135deg, #232526, #414345);
+}
+
+/* HOVER */
+
+.book-card:hover {
+
+    transform: translateY(-10px) scale(1.02);
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* CONTENT */
+
+.book-info {
+
+    width: 100%;
+
+    color: white;
+}
+
+.book-info h2 {
+
+    font-size: 42px;
+
+    margin-bottom: 12px;
+
+    font-weight: 700;
+}
+
+.book-info p {
+
+    color: rgba(255, 255, 255, 0.85);
+
+    line-height: 1.6;
+
+    margin-bottom: 22px;
+
+    font-size: 16px;
+}
+
+/* BUTTON */
+
+.enter-btn {
+
+    display: inline-block;
+
+    padding: 12px 28px;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: black;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.enter-btn:hover {
+
+    background: #d4af37;
+}
+
+   footer {
+    background-color: rgba(92, 89, 89, 0.405);
+            text-align: center;
+            padding: 5px;
+            color: var(--muted);
+            font-size: 1rem;
+            border-top: 2px solid var(--border);
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND VIDEO -->
+
+    <video id="backgroundvideo" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/collection.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/buy">Buy</a>
+        <a href="/rent">Rent</a>
+        <a href="/bemember">Pro</a>
+        <a href="/login">Login</a>
+
+    </nav>
+
+    <!-- TITLE -->
+
+    <h1 class="page-title">Our Collection</h1>
+
+    <!-- BOOKS -->
+
+<div class="books-container">
+
+    <!-- CATEGORY 1 -->
+
+    <div class="book-card card1">
+
+        <div class="book-info">
+
+            <h2>Fiction</h2>
+
+            <p>
+                Explore stories, imagination and classic literature.
+            </p>
+
+            <a class="enter-btn" href="/fiction">
+                Explore
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CATEGORY 2 -->
+
+    <div class="book-card card2">
+
+        <div class="book-info">
+
+            <h2>Finance</h2>
+
+            <p>
+             Money management and business mindset.
+            </p>
+
+            <a class="enter-btn" href="/finance">
+                Explore
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CATEGORY 3 -->
+
+    <div class="book-card card3">
+
+        <div class="book-info">
+
+            <h2>Self Growth</h2>
+
+            <p>
+                Improve habits, mindset and personal development.
+            </p>
+
+            <a class="enter-btn" href="/selfgrowth">
+                Explore
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CATEGORY 4 -->
+
+    <div class="book-card card4">
+
+        <div class="book-info">
+
+            <h2>Technology</h2>
+
+            <p>
+                Programming, AI, development and modern innovations.
+            </p>
+
+            <a class="enter-btn" href="/technology">
+                Explore
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>© 2026 Atonement – My Digital Library. All rights reserved.</footer>
+
+
+</body>
+
+</html>

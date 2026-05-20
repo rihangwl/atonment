@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Think and Grow Rich</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #241913;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2b1b12;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 22px 50px;
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 40px;
+
+            background: rgba(0, 0, 0, 0.82);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+            color: #f5e6cc;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+            width: 75%;
+            margin: auto;
+            padding-top: 130px;
+            padding-bottom: 80px;
+        }
+
+        /* TOP BUTTONS */
+
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+            text-decoration: none;
+            background: #1a120e;
+            color: #f5e6cc;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+            background: #d4af37;
+            color: black;
+        }
+
+        /* BOOK PAGE */
+
+        .book-page {
+
+            background: #f1dfc2;
+
+            padding: 90px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.3;
+        }
+
+        /* TITLE */
+
+        .book-title {
+            text-align: center;
+            font-size: 74px;
+            margin-bottom: 15px;
+        }
+
+        .author {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 60px;
+            font-style: italic;
+        }
+
+        .chapter {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 45px;
+        }
+
+        /* TEXT */
+
+        .book-page p {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .book-page p:first-letter {
+            font-size: 62px;
+            font-weight: bold;
+            float: left;
+            line-height: 1;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- CONTAINER -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/Think.pdf') }}" download>
+                Download PDF
+            </a>
+
+            <a href="/finance">
+                Back to Finance
+            </a>
+
+        </div>
+
+        <!-- BOOK PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                Think and Grow Rich
+            </h1>
+
+            <div class="author">
+                by Napoleon Hill
+            </div>
+
+            <h2 class="chapter">
+                Desire — The Starting Point of All Achievement
+            </h2>
+
+            <p>
+                Truly, thoughts are powerful things.
+                When mixed with definiteness of purpose,
+                persistence, and burning desire,
+                they become mighty forces capable of shaping destiny.
+            </p>
+
+            <p>
+                Every great fortune begins with an idea.
+                Every empire starts first in the imagination of one determined mind.
+            </p>
+
+            <p>
+                Napoleon Hill spent years studying the habits and philosophies
+                of the wealthiest and most successful individuals in America.
+            </p>
+
+            <p>
+                He discovered that achievement was never accidental.
+                Success followed certain principles,
+                repeated consistently by men and women who refused to surrender.
+            </p>
+
+            <p>
+                The first principle was desire.
+                Not a weak wish,
+                but a burning obsession so intense that failure became impossible.
+            </p>
+
+            <p>
+                Many people say they wish to become wealthy,
+                yet few truly understand what they are willing to sacrifice for it.
+            </p>
+
+            <p>
+                Desire transforms ordinary dreams into unstoppable missions.
+                It sharpens the mind,
+                strengthens discipline,
+                and awakens courage hidden deep within the soul.
+            </p>
+
+            <p>
+                Hill explained that successful individuals think differently.
+                They do not dwell upon limitations.
+                Instead, they focus intensely upon opportunity.
+            </p>
+
+            <p>
+                Fear destroys more dreams than failure ever could.
+                Most people quit before their vision has time to mature.
+            </p>
+
+            <p>
+                Persistence, however, separates the dreamer from the achiever.
+                Temporary defeat is not permanent failure.
+                It is merely a lesson demanding adjustment and resilience.
+            </p>
+
+            <p>
+                The subconscious mind responds to repeated thoughts.
+                Whatever dominates your thinking eventually shapes your reality.
+            </p>
+
+            <p>
+                For this reason,
+                successful people guard their minds carefully.
+                They feed themselves confidence,
+                ambition,
+                faith,
+                and disciplined thinking.
+            </p>
+
+            <p>
+                Hill believed that autosuggestion—
+                repeatedly affirming goals and visions—
+                could influence behavior and unlock hidden potential.
+            </p>
+
+            <p>
+                A poor mindset attracts hesitation and fear.
+                A wealthy mindset attracts action and opportunity.
+            </p>
+
+            <p>
+                One of the most powerful lessons in the book
+                is the importance of decision.
+            </p>
+
+            <p>
+                Successful people make decisions quickly
+                and change them slowly.
+                Unsuccessful people do the opposite.
+            </p>
+
+            <p>
+                Indecision creates doubt.
+                Doubt creates fear.
+                Fear destroys initiative.
+            </p>
+
+            <p>
+                Another essential principle is the Master Mind.
+                No great achievement is accomplished entirely alone.
+            </p>
+
+            <p>
+                When intelligent people unite around a common purpose,
+                their combined energy creates extraordinary results.
+            </p>
+
+            <p>
+                Hill also emphasized specialized knowledge.
+                Information alone does not create wealth.
+                Applied knowledge does.
+            </p>
+
+            <p>
+                Many educated individuals remain poor because they never transform knowledge into action.
+            </p>
+
+            <p>
+                Imagination plays a critical role in success.
+                Every invention,
+                business,
+                and fortune first existed as an invisible thought.
+            </p>
+
+            <p>
+                The world rewards those who dare to imagine beyond ordinary limitations.
+            </p>
+
+            <p>
+                Fear of criticism is among humanity’s greatest weaknesses.
+                Countless ambitions die because people worry about opinions.
+            </p>
+
+            <p>
+                Yet history remembers those who acted boldly despite ridicule and doubt.
+            </p>
+
+            <p>
+                Hill concluded that riches are not measured solely in money.
+                True wealth includes freedom,
+                confidence,
+                purpose,
+                and the ability to shape one’s own future.
+            </p>
+
+            <p>
+                Success begins not in circumstances,
+                but in the hidden landscape of the mind.
+            </p>
+
+            <p>
+                The individual who masters thought,
+                discipline,
+                and persistence eventually masters opportunity itself.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

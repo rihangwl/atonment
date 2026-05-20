@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Art of Money Getting</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #24170f;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2d1d13;
+        }
+
+        /* NAVBAR */
+
+        #navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            width: 100%;
+
+            padding: 22px 50px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 40px;
+
+            background: rgba(0, 0, 0, 0.85);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        #navbar a {
+
+            color: #f5e6cc;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+
+            color: #d4af37;
+        }
+
+        /* CONTAINER */
+
+        .book-container {
+
+            width: 75%;
+
+            margin: auto;
+
+            padding-top: 130px;
+
+            padding-bottom: 80px;
+        }
+
+        /* TOP BUTTONS */
+
+        .top-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .top-buttons a {
+
+            text-decoration: none;
+
+            background: #1a120d;
+
+            color: #f5e6cc;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: 0.3s;
+        }
+
+        .top-buttons a:hover {
+
+            background: #d4af37;
+
+            color: black;
+        }
+
+        /* PAGE */
+
+        .book-page {
+
+            background: #f3dfbf;
+
+            padding: 90px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.45),
+                inset 0 0 20px rgba(0, 0, 0, 0.08);
+
+            line-height: 2.3;
+        }
+
+        /* TITLE */
+
+        .book-title {
+
+            text-align: center;
+
+            font-size: 72px;
+
+            margin-bottom: 15px;
+        }
+
+        .author {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+
+            font-style: italic;
+        }
+
+        .chapter {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 45px;
+        }
+
+        /* TEXT */
+
+        .book-page p {
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            text-align: justify;
+        }
+
+        .book-page p:first-letter {
+
+            font-size: 62px;
+
+            font-weight: bold;
+
+            float: left;
+
+            line-height: 1;
+
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <a href="/">Home</a>
+        <a href="/books">Categories</a>
+        <a href="/buy">Buy</a>
+
+    </nav>
+
+    <!-- CONTAINER -->
+
+    <div class="book-container">
+
+        <!-- BUTTONS -->
+
+        <div class="top-buttons">
+
+            <a href="{{ url_for('static', filename='books/Artm.pdf') }}" download>
+                Download PDF
+            </a>
+
+            <a href="/finance">
+                Back to Finance
+            </a>
+
+        </div>
+
+        <!-- BOOK PAGE -->
+
+        <div class="book-page">
+
+            <h1 class="book-title">
+                The Art of Money Getting
+            </h1>
+
+            <div class="author">
+                by P. T. Barnum
+            </div>
+
+            <h2 class="chapter">
+                The Road to Fortune
+            </h2>
+
+            <p>
+                Money is one of the greatest forces in human civilization.
+                It shapes opportunities, influences decisions,
+                and determines the comfort with which many people live their lives.
+            </p>
+
+            <p>
+                Yet wealth is rarely acquired through luck alone.
+                Fortune most often follows discipline,
+                patience,
+                wise judgment,
+                and relentless perseverance.
+            </p>
+
+            <p>
+                P. T. Barnum believed that success was not reserved only for the privileged.
+                Ordinary people could achieve prosperity if they followed sound principles
+                and avoided destructive habits.
+            </p>
+
+            <p>
+                One of the earliest lessons he offered was simple:
+                choose the right occupation.
+            </p>
+
+            <p>
+                A person forced into work they hate
+                rarely achieves excellence.
+                Passion fuels determination,
+                and determination creates mastery.
+            </p>
+
+            <p>
+                Barnum argued that true success comes from loving one's labor.
+                When enthusiasm combines with effort,
+                work becomes more productive and opportunities appear naturally.
+            </p>
+
+            <p>
+                He warned strongly against laziness.
+                Idleness destroys ambition,
+                weakens character,
+                and leaves individuals dependent upon chance rather than skill.
+            </p>
+
+            <p>
+                Industry, however,
+                strengthens confidence and attracts trust from others.
+            </p>
+
+            <p>
+                Trust was another foundation of Barnum’s philosophy.
+                Honesty in business creates long-lasting success,
+                while deception eventually leads to ruin.
+            </p>
+
+            <p>
+                A reputation built over years can collapse in moments through dishonesty.
+                Therefore, integrity must always remain stronger than greed.
+            </p>
+
+            <p>
+                Barnum also emphasized the importance of careful spending.
+                Many individuals earn respectable incomes
+                but remain poor because they spend without discipline.
+            </p>
+
+            <p>
+                Wealth grows not merely from earning,
+                but from preserving and wisely investing what is earned.
+            </p>
+
+            <p>
+                Small unnecessary expenses accumulate quietly over time.
+                Financial carelessness often destroys futures before people even notice the danger.
+            </p>
+
+            <p>
+                Another principle Barnum admired was persistence.
+                Temporary failure should never discourage ambition.
+            </p>
+
+            <p>
+                Many successful individuals faced rejection repeatedly
+                before finally achieving recognition and prosperity.
+            </p>
+
+            <p>
+                Fear of criticism also traps countless people in mediocrity.
+                Great achievements often appear unrealistic before they become reality.
+            </p>
+
+            <p>
+                The world frequently doubts those who think differently,
+                yet progress depends upon courageous minds willing to act boldly.
+            </p>
+
+            <p>
+                Barnum encouraged readers to surround themselves with intelligent and motivated individuals.
+                Environment influences behavior more powerfully than many realize.
+            </p>
+
+            <p>
+                Ambitious company inspires growth,
+                while negative company drains energy and confidence.
+            </p>
+
+            <p>
+                He believed communication skills were equally important.
+                A person able to speak clearly,
+                respectfully,
+                and persuasively gains enormous advantages in both business and life.
+            </p>
+
+            <p>
+                Opportunity often arrives disguised as difficulty.
+                Those who remain patient during hardship frequently emerge stronger and wiser.
+            </p>
+
+            <p>
+                Barnum insisted that no success comes instantly.
+                Wealth accumulated slowly tends to last longer
+                because it is built upon experience and judgment.
+            </p>
+
+            <p>
+                He advised readers never to gamble recklessly
+                or chase shortcuts promising effortless riches.
+            </p>
+
+            <p>
+                Sustainable prosperity depends upon steady progress,
+                intelligent planning,
+                and self-control.
+            </p>
+
+            <p>
+                The habits developed in youth eventually shape the direction of adulthood.
+                Discipline practiced daily becomes the architecture of future success.
+            </p>
+
+            <p>
+                In the end,
+                Barnum believed wealth was not simply about possessing money.
+                It was about independence,
+                opportunity,
+                dignity,
+                and the ability to create a meaningful life.
+            </p>
+
+            <p>
+                True fortune belongs not merely to those who acquire riches,
+                but to those who develop wisdom while earning them.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
